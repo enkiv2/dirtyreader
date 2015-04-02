@@ -57,7 +57,6 @@ profanity["small"]=["chode"]
 profanity["Racial"]=["assnigger"]
 profanity["urinate"]=["piss"]
 profanity["mentally"]=["tard"]
-profanity["a"]=["fatass"]
 profanity["penises"]=["dicks"]
 profanity["hussy"]=["whore"]
 profanity["Breast"]=["chesticle"]
@@ -123,15 +122,15 @@ for line in sys.stdin.readlines():
 	for chunk in line.split(" "):
 		for word in re.split("([^A-Za-z0-9]*)", chunk):
 			if word in profanity:
-				line2.append(random.choice(profanity[word]))
+				line2.append(random.choice([random.choice(profanity[word]), word]))
 			elif word in profanity_r:
-				line2.append(random.choice(profanity[random.choice(profanity_r[word])]))
+				line2.append(random.choice([random.choice(profanity[random.choice(profanity_r[word])]), word]))
 			else:
 				line2.append(word)
 		if(insertionRate>0):
 			if(random.choice(range(0, insertionRate))==1):
 				line2.append(random.choice(profaneWords))
-	print(re.sub(r' ([^A-Za-z0-9]) ', r'\g<1>', " ".join(line2)))
+	print(re.sub(r' ([^A-Za-z0-9]) ', r'\g<1>', " ".join(line2)).strip())
 
 
 
