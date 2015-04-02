@@ -121,10 +121,10 @@ for line in sys.stdin.readlines():
 	line2=[]
 	for chunk in line.split(" "):
 		for word in re.split("([^A-Za-z0-9]*)", chunk):
-			if word in profanity:
-				line2.append(random.choice([random.choice(profanity[word]), word]))
-			elif word in profanity_r:
-				line2.append(random.choice([random.choice(profanity[random.choice(profanity_r[word])]), word]))
+			if word.lower() in profanity:
+				line2.append(random.choice([random.choice(profanity[word.lower()]), word]))
+			elif word.lower() in profanity_r:
+				line2.append(random.choice([random.choice(profanity[random.choice(profanity_r[word.lower()])]), word]))
 			else:
 				line2.append(word)
 		if(insertionRate>0):
