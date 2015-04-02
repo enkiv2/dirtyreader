@@ -87,6 +87,16 @@ import sys, os, re
 from random import Random
 random=Random()
 
+insertionRate=0
+enableSlurs=False
+if(len(sys.argv)>1):
+	insertionRate=int(sys.argv[1])
+	if(len(sys.argv)>2):
+		if(sys.argv[2]=="+slurs"):
+			enableSlurs=True
+			for slur in slurs:
+				profanity[slur]=slurs[slur]
+
 profaneWords=[]
 profanity_r={}
 for word in profanity:
@@ -97,9 +107,6 @@ for word in profanity:
 		profanity_r[w2].append(word)
 
 
-insertionRate=0
-if(len(sys.argv)>1):
-	insertionRate=int(sys.argv[1])
 for line in sys.stdin.readlines():
 	line2=[]
 	for chunk in line.split(" "):
